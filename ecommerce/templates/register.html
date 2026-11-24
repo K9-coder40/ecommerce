@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Register - My E-commerce Site{% endblock %}
+
+{% block content %}
+<div class="container bg-success-subtle py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4 bg-warning-subtle">
+                    <h2 class="h4 fw-bold text-center text-dark mb-1">Create an Account</h2>
+                    <p class="text-muted text-center small mb-4">Sign up to get started</p>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label fw-semibold small">
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="form-text small">{{ field.help_text|safe }}</div>
+                                {% endif %}
+                                {% if field.errors %}
+                                    <div class="text-danger small mt-1">{{ field.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <button type="submit" class="btn btn-dark w-100 rounded-pill py-2 fw-semibold">
+                            Register
+                        </button>
+                    </form>
+
+                    <hr class="my-4">
+                    <p class="text-center small text-muted mb-0">
+                        Already have an account? <a href="{% url 'login' %}" class="fw-semibold text-decoration-none">Sign in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

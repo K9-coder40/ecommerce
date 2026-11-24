@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Add products{% endblock %}
+{%block content%}
+<div class="container">
+    <h2>User Dashboard</h2>
+
+  <div class="row">
+  {%for product in products%}
+            <div class="col-md-4">
+                <a href="/products/?category=audio" class="text-decoration-none text-dark">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
+                        <img src="{{ product.image.url}}"
+                             class="card-img-top" alt="Audio" style="height: 220px; object-fit: cover;">
+                        <div class="card-body">
+                            <h3 class="h6 fw-bold mb-1">{{product.name}}</h3>
+                            <p class="small text-muted mb-0">{{product.description}}</p>
+                            <strong>Ksh{{product.price}}</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+  {%endfor%}   
+</div>
+
+
+{% endblock %}
